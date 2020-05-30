@@ -2,9 +2,6 @@
 	grid-row: content-s/content-e;
 	grid-column: s/e;
 
-	&__page-title {
-	}
-
 	&__form {
 		display: grid;
 		grid-template-rows:
@@ -25,18 +22,17 @@
 		margin-top: 15px;
 		grid-row: password-s/password-e;
 	}
-
 	&__line {
 		grid-row: line-s/line-e;
 		border-top: 1px solid #ccc;
-		&__login {
-			margin-top: 39px;
-			grid-row: login-s/login-e;
-		}
-		&__details {
-			grid-row: 1/-1;
-			justify-self: end;
-			align-self: start;
-		}
+	}
+	&__login {
+		margin-top: 39px;
+		grid-row: login-s/login-e;
+	}
+	&__details {
+		grid-row: 1/-1;
+		justify-self: end;
+		align-self: start;
 	}
 }
