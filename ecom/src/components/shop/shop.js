@@ -1,12 +1,18 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import ShopSearchBar from "./shopSearchBar.js";
+import ShopSearchBar from "./shopSearchBar";
 import ShopProduct from "./shopProduct";
+import ShopCart from "./shopCart";
 import CartButton from "./cartButton";
 
 class Shop extends Component {
+	constructor() {
+		super();
+		this.state = {
+			showCart: true
+		};
+	}
 	componentDidMount() {
 		const headerLinks = [
 			{
@@ -20,7 +26,6 @@ class Shop extends Component {
 		// filter products with links
 		this.props.fetchShopProducts();
 	}
-
 	shouldComponentUpdate(nextProps) {
 		if (this.props != nextProps) {
 			this.props.setNavbarLinks(nextProps.categories, _id =>
@@ -44,20 +49,21 @@ class Shop extends Component {
 	};
 
 	render() {
+		// return <ShopCart className='shop__cart'/>
 		return (
-			<div className="shop">
-				<ShopSearchBar onSubmit={this.onSubmit} className="shop__search-bar" />
-				<div className="shop__products">
+			<div className='shop'>
+				<ShopSearchBar onSubmit={this.onSubmit} className='shop__search-bar' />
+				<div className='shop__products'>
 					{this.props.filteredProducts.map(product => {
 						return <ShopProduct {...product} key={product._id} />;
 					})}
 				</div>
-				{this.state.showCart ? <ShopCart className="shop__cart" /> : ""}
+				{this.state.showCart ? <ShopCart className='shop__cart' /> : ""}
 
 				<CartButton
 					onClick={this.handleAddToCart}
-					className="shop__cart-button"
-					icon="fas fa-cart-plus"
+					className='shop__cart-button'
+					icon='fas fa-cart-plus'
 				/>
 			</div>
 		);
