@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import CartProduct from "./cartProduct";
+
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+
 import CartButton from "./cartButton";
-import history from "../../history";
+
 function CartContent({ className, products }) {
 	let count = products.length;
 	let productsJSX = products.map(product => (
@@ -17,21 +19,13 @@ function CartContent({ className, products }) {
 		</div>
 	);
 }
-
 function CartFooter({ className, products }) {
-	let subtotal = 0;
-	products.map(cartProduct => {
-		subtotal += cartProduct.quantity * cartProduct.product.price;
-	});
+	const price = 7.96;
 	return (
 		<div className={`${className} cart-footer`}>
-			<a
-				onClick={() => history.push("/order/review")}
-				className='cart-footer__checkout'>
-				Checkout
-			</a>
+			<a className='cart-footer__checkout'>Checkout</a>
 			<div className='cart-footer__subtotal'>Subtotal</div>
-			<div className='cart-footer__price'>${subtotal}</div>
+			<div className='cart-footer__price'>${price}</div>
 		</div>
 	);
 }
@@ -39,6 +33,7 @@ class ShopCart extends Component {
 	componentDidMount() {
 		this.props.fetchCartProducts();
 	}
+
 	handleAddToCart = () => {
 		if (
 			document.getElementById("shop-cart").classList.contains("cart-hidden")
@@ -48,6 +43,7 @@ class ShopCart extends Component {
 			document.getElementById("shop-cart").classList.add("cart-hidden");
 		}
 	};
+
 	render() {
 		const { className } = this.props;
 		return (

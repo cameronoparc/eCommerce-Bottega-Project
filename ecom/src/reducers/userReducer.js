@@ -2,16 +2,35 @@ import {
 	SET_USER_PURCHASES,
 	SET_PURCHASE_DETAIL,
 	SET_CART_PRODUCTS,
-	ADD_CART_PRODUCT
+	ADD_CART_PRODUCT,
+	AUTHENTICATE_USER
 } from "../actions/types";
 
 const INITIAL_STATE = {
+	user: {},
+	cartProducts: [],
 	purchases: [],
-	purchaseDetail: {}
+	purchaseDetail: {
+		_id: -1,
+		total: 0,
+		orderNumber: "",
+		orderDate: null,
+		creditCard: "",
+		user: {
+			name: "",
+			shippingAddress: ""
+		}
+	}
 };
 
 export default function (state = INITIAL_STATE, action) {
 	switch (action.type) {
+		case AUTHENTICATE_USER:
+			const { user } = action.payload;
+			return {
+				...state,
+				user
+			};
 		case ADD_CART_PRODUCT:
 			var exists = false;
 			const newCP = action.payload;
@@ -34,7 +53,6 @@ export default function (state = INITIAL_STATE, action) {
 				...state,
 				cartProducts: cartProducts
 			};
-
 		case SET_CART_PRODUCTS:
 			return {
 				...state,
