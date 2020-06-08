@@ -7,7 +7,6 @@ import { FormInput, FormButton } from "../formFields";
 
 import history from "../../history";
 import OrderSummary from "./orderSummary";
-
 import { UnderlinedTitle } from "./infoHelp";
 
 class PaymentForm extends Component {
@@ -32,6 +31,7 @@ class PaymentForm extends Component {
 					name='card'
 					component={FormInput}
 				/>
+
 				<Field
 					className='payment-form__expiration'
 					type='expiration'
@@ -48,6 +48,7 @@ class PaymentForm extends Component {
 					name='ccv'
 					component={FormInput}
 				/>
+
 				<div className='payment-form__line'></div>
 				<Field
 					className='payment-form__pay-complete'
@@ -92,7 +93,5 @@ function mapStateToProps(state) {
 	const { name, address } = state.user.user;
 	return { name, address };
 }
-
-PaymentForm = connect(mapStateToProps)(PaymentForm);
 
 export default PaymentForm;
